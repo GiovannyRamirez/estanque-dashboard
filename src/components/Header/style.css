@@ -1,0 +1,14 @@
+.Header__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Header__title {
+  margin: 12px 0;
+}
+
+.Header__member {
+  margin-bottom: 8px;
+}

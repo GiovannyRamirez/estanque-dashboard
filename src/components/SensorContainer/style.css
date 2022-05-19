@@ -1,0 +1,35 @@
+.Sensor__container {
+  border: 1px solid #74787b;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.Sensor__type {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.Sensor__value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+  padding: 0 16px;
+}
+
+.Sensor__current {
+  width: 85%;
+}
+
+.Sensor__values {
+  padding: 0 16px;
+  text-align: center;
+}
+
+.Sensor__progress {
+  width: 75%;
+}
+
+.Sensor__alert {
+  text-align: center;
+}
