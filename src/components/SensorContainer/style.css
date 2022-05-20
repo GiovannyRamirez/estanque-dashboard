@@ -4,6 +4,11 @@
   padding: 16px;
 }
 
+.Sensor__container:hover {
+  transition: all 0.25s ease;
+  transform: scale(1.05);
+}
+
 .Sensor__type {
   margin-bottom: 8px;
   text-align: center;
