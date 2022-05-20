@@ -105,3 +105,39 @@ export const MOCKED_DATA = {
     },
   ]  
 }
+
+export const MOCKED_GRAPHIC_DATA = {
+  labels: ["Ene", "Feb"],
+  datasets: [
+    {
+      label: "Sensor 1",
+      data: [10.5, 9.7],
+      borderColor: "blue",
+      backgroundColor: "blue",
+    },
+    {
+      label: "Sensor 2",
+      data: [12.5, 19.7],
+      borderColor: "green",
+      backgroundColor: "green",
+    },
+    {
+      label: "Sensor 3",
+      data: [17.5, 0.7],
+      borderColor: "pink",
+      backgroundColor: "pink",
+    },
+    {
+      label: "Sensor 4",
+      data: [2.5, -2.5],
+      borderColor: "purple",
+      backgroundColor: "purple",
+    },
+    {
+      label: "Sensor 5",
+      data: [4, 1],
+      borderColor: "cyan",
+      backgroundColor: "cyan",
+    },
+  ]
+}
