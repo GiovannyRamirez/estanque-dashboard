@@ -1,10 +1,12 @@
 .Sensor__container {
   border: 1px solid #74787b;
   border-radius: 8px;
+  cursor: pointer;
   padding: 16px;
 }
 
 .Sensor__container:hover {
+  background: #F9F9F9;
   transition: all 0.25s ease;
   transform: scale(1.05);
 }

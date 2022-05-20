@@ -6,11 +6,22 @@ import { getUpToThreeDecimals } from '../../utils'
 
 import './style.css'
 
-const SensorContainer = ({ nombre, promedio, mensaje, color, listValores }) => {
+const SensorContainer = ({ nombre, promedio, mensaje, color, listValores, currentVariable, setCurrentVariable }) => {
   const { label, min, max, magnitude } = CONF_VALUES[nombre]
+  const setVariableType = () => setCurrentVariable(nombre)
+  
+  const selectedSensor = () => {
+    if (currentVariable === nombre) {
+      return {
+        background: "#F9F9F9",
+        border: `2px solid ${color}`,
+        transform: "scale(1.03)",
+      }
+    }
+  }
 
   return (
-    <div className="Sensor__container">
+    <div className="Sensor__container" onClick={setVariableType} style={{ ...selectedSensor() }}>
       <h2 className="Sensor__type" style={{ color }}>{label} {magnitude}</h2>
       <p className="Sensor__alert" style={{ color }}>{mensaje}</p>
       <div className="Sensor__value">
@@ -42,6 +53,7 @@ SensorContainer.propTypes = {
       fecha: PropTypes.string.isRequired,
     })
   ),
+  setCurrentVariable: PropTypes.func.isRequired,
 }
 
 export default SensorContainer
