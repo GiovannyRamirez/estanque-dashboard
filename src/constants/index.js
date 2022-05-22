@@ -107,37 +107,79 @@ export const MOCKED_DATA = {
 }
 
 export const MOCKED_GRAPHIC_DATA = {
-  labels: ["Ene", "Feb"],
-  datasets: [
-    {
-      label: "Sensor 1",
-      data: [10.5, 9.7],
-      borderColor: "blue",
-      backgroundColor: "blue",
-    },
-    {
-      label: "Sensor 2",
-      data: [12.5, 19.7],
-      borderColor: "green",
-      backgroundColor: "green",
-    },
-    {
-      label: "Sensor 3",
-      data: [17.5, 0.7],
-      borderColor: "pink",
-      backgroundColor: "pink",
-    },
-    {
-      label: "Sensor 4",
-      data: [2.5, -2.5],
-      borderColor: "purple",
-      backgroundColor: "purple",
-    },
-    {
-      label: "Sensor 5",
-      data: [4, 1],
-      borderColor: "cyan",
-      backgroundColor: "cyan",
-    },
-  ]
+  Temperatura: {
+    labels: ["11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30"],
+    datasets: [
+      {
+        label: "Sensor 1",
+        data: [9, 9.5, 9.3, 8.7, 10.7, 11, 19, 9.3].reverse(),
+        borderColor: "blue",
+        backgroundColor: "blue",
+      },
+      {
+        label: "Sensor 2",
+        data: [9.2, 9, 9.7, 8.2, 12.8, 11.9, 19, 9.3].reverse(),
+        borderColor: "green",
+        backgroundColor: "green",
+      },
+      {
+        label: "Sensor 3",
+        data: [9.4, 8.7, 9.2, 8.7, 12, 11.2, 18.1, 9.7].reverse(),
+        borderColor: "pink",
+        backgroundColor: "pink",
+      },
+      {
+        label: "Sensor 4",
+        data: [9.1, 8.8, 9.3, 8.1, 12.3, 11, 18.7, 10].reverse(),
+        borderColor: "purple",
+        backgroundColor: "purple",
+      },
+      {
+        label: "Sensor 5",
+        data: [9.4, 9.4, 10, 9, 11.5, 10.8, 17.2, 13].reverse(),
+        borderColor: "cyan",
+        backgroundColor: "cyan",
+      },
+    ]
+  },
+  Oxigeno: {
+    labels: ["11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30"],
+    datasets: [
+      {
+        label: "Sensor 1",
+        data: [7, 8, 9, 7, 9, 8, 7.5, 8.3],
+        borderColor: "blue",
+        backgroundColor: "blue",
+      },
+      {
+        label: "Sensor 2",
+        data: [7.2, 8.4, 9.7, 6.7, 8.9, 7.8, 7.9, 8],
+        borderColor: "green",
+        backgroundColor: "green",
+      },
+    ]
+  },
+  Ph: {
+    labels: ["11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30"],
+    datasets: [
+      {
+        label: "Sensor 1",
+        data: [2, 6, 9, 12, 6.4, 7.4, 10, 6.8],
+        borderColor: "blue",
+        backgroundColor: "blue",
+      },
+      {
+        label: "Sensor 2",
+        data: [2.5, 5.6, 7.9, 11.4, 6, 7.9, 9.8, 7.2],
+        borderColor: "green",
+        backgroundColor: "green",
+      },
+      {
+        label: "Sensor 3",
+        data: [3, 4.3, 8.2, 11.8, 6.5, 8.2, 9, 7.1],
+        borderColor: "pink",
+        backgroundColor: "pink",
+      },
+    ]
+  },
 }

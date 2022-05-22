@@ -21,7 +21,7 @@ const Dashboard = () => {
             key={`${nombre}-${id}`} {...{ currentVariable, setCurrentVariable, nombre, promedio, mensaje, color, listValores }} />      
         ))}
       </div>
-      <Statistics data={MOCKED_GRAPHIC_DATA} { ...{ currentVariable }} />
+      <Statistics data={MOCKED_GRAPHIC_DATA[currentVariable]} { ...{ currentVariable }} />
     </div>
   );
 }
