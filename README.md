@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-## `npm install`
+### `npm install`
 First of all, you have to install all dependencies to run project.\
 
 ### `npm start`
@@ -18,6 +18,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+![Vista Desktop](https://user-images.githubusercontent.com/62915328/169673139-ece5d4c0-49e7-43d2-ba0d-658ce4126274.png)
 
 ### `npm run build`
 
