@@ -19,7 +19,7 @@ export const CONF_VALUES= {
   },
 };
 
-const LOCAL_HOST_PORT = "http://192.168.0.20:9091";
+const LOCAL_HOST_PORT = "http://127.0.0.1:9091";
 
 export const ENDPOINTS = {
   ESTANQUES: `${LOCAL_HOST_PORT}/estanques`,
