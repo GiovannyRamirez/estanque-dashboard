@@ -5,8 +5,16 @@ import Loader from "../Loader/Loader";
 
 import "./style.css";
 
-const Header = ({ estanques, loading, setCurrentEstanque }) => {
-  const handleChange = (e) => setCurrentEstanque(e.target.value);
+const Header = ({
+  estanques,
+  loading,
+  setCurrentEstanque,
+  setCurrentVariable,
+}) => {
+  const handleChange = (e) => {
+    setCurrentEstanque(e.target.value);
+    setCurrentVariable(0);
+  };
 
   return (
     <div className="Header__container">
@@ -34,6 +42,7 @@ const Header = ({ estanques, loading, setCurrentEstanque }) => {
 
 Header.propTypes = {
   loading: PropTypes.bool.isRequired,
+  setCurrentVariable: PropTypes.func.isRequired,
   setCurrentEstanque: PropTypes.func.isRequired,
   estanques: PropTypes.arrayOf(
     PropTypes.shape({

@@ -1,8 +1,17 @@
+import { MONTHS } from "../../constants";
+
 export const convertLabels = (labels) => {
   let formattedLabels = [];
-  labels.forEach((label) =>
-    formattedLabels.push(label.split(" ")[1].split(".")[0])
-  );
+  labels.forEach((label) => {
+  const date = new Date(label);
+  const day = date.getDate();
+  const month = MONTHS[date.getMonth()];
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+  formattedLabels.push(`${day} ${month} ${hour}:${minute}:${second}`);
+});
+
   return formattedLabels;
 };
 

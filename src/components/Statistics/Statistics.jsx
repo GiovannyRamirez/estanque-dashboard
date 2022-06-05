@@ -46,7 +46,9 @@ const Statistics = ({ currentEstanque, currentVariable }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setDataToGraphic({});
       setLoading(true);
+      setError("");
       try {
         const response = await fetch(
           `${ENDPOINTS.ESTADISTICAS}tipoSensor=${currentVariable}&idEstanque=${currentEstanque}`
@@ -71,12 +73,13 @@ const Statistics = ({ currentEstanque, currentVariable }) => {
     <div className="Statistics__container">
       {loading && <Loader />}
       {error && <Error message={error} />}
-      {currentVariable ? (
-        <Line options={options} data={dataToGraphic} />
-      ) : (
+      {currentVariable === 0 && (
         <h4 className="Statistics__label">
           Selecciona una de las variables para ver sus estadísticas
         </h4>
+      )}
+      {!loading && !!currentVariable && (
+        <Line options={options} data={dataToGraphic} />
       )}
     </div>
   );

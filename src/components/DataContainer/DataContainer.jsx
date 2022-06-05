@@ -10,15 +10,21 @@ import Error from "../Error/Error";
 
 import "./style.css";
 
-const DataContainer = ({ currentEstanque }) => {
-  const [currentVariable, setCurrentVariable] = useState(0);
+const DataContainer = ({
+  currentEstanque,
+  currentVariable,
+  setCurrentVariable,
+}) => {
   const [listaSensores, setListaSensores] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  let hasData = [];
 
   useEffect(() => {
     const fetchData = async () => {
+      setListaSensores([]);
       setLoading(true);
+      setError("");
       try {
         const response = await fetch(
           `${ENDPOINTS.VALORES}idEstanque=${currentEstanque}`
@@ -39,28 +45,34 @@ const DataContainer = ({ currentEstanque }) => {
       {loading && <Loader />}
       {error && <Error message={error} />}
       <div className="Data__container">
-        {listaSensores.map(
-          ({ id, nombre, promedio, mensaje, color, listValores }) => {
-            if (listValores.length === 0) return null;
-            return (
-              <SensorContainer
-                key={`${nombre}-${id}`}
-                {...{
-                  currentVariable,
-                  setCurrentVariable,
-                  id,
-                  nombre,
-                  promedio,
-                  mensaje,
-                  color,
-                  listValores,
-                }}
-              />
-            );
-          }
-        )}
+        {!!listaSensores.length &&
+          listaSensores.map(
+            ({ id, nombre, promedio, mensaje, color, listValores }) => {
+              if (listValores.length === 0) {
+                hasData.push(false);
+                return null;
+              }
+              return (
+                <SensorContainer
+                  key={`${nombre}-${id}`}
+                  {...{
+                    currentVariable,
+                    setCurrentVariable,
+                    id,
+                    nombre,
+                    promedio,
+                    mensaje,
+                    color,
+                    listValores,
+                  }}
+                />
+              );
+            }
+          )}
       </div>
-      <Statistics {...{ currentVariable, currentEstanque }} />
+      {!hasData.length && (
+        <Statistics {...{ currentVariable, currentEstanque }} />
+      )}
     </>
   );
 };
@@ -68,6 +80,9 @@ const DataContainer = ({ currentEstanque }) => {
 DataContainer.propTypes = {
   currentEstanque: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     .isRequired,
+  currentVariable: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
+  setCurrentVariable: PropTypes.func.isRequired,
 };
 
 export default DataContainer;

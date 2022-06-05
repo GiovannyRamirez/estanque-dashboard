@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [estanques, setEstanques] = useState([]);
   const [currentEstanque, setCurrentEstanque] = useState(0);
+  const [currentVariable, setCurrentVariable] = useState(0);
 
   useEffect(() => {
     const fetchEstanques = async () => {
@@ -37,8 +38,14 @@ const Dashboard = () => {
         <Error message={error} />
       ) : (
         <>
-          <Header {...{ estanques, loading, setCurrentEstanque }} />
-          {currentEstanque !== 0 && <DataContainer {...{ currentEstanque }} />}
+          <Header
+            {...{ estanques, loading, setCurrentEstanque, setCurrentVariable }}
+          />
+          {currentEstanque !== 0 && (
+            <DataContainer
+              {...{ currentEstanque, currentVariable, setCurrentVariable }}
+            />
+          )}
         </>
       )}
     </div>
