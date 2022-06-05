@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-![Vista Desktop](https://user-images.githubusercontent.com/62915328/169673139-ece5d4c0-49e7-43d2-ba0d-658ce4126274.png)
+![estanque](https://user-images.githubusercontent.com/62915328/172035317-cb3cd02a-bd0f-477d-bac2-ae3b2aaba71a.gif)
 
 ### `npm run build`
 
