@@ -1,29 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
 
-import { MOCKED_DATA, MOCKED_GRAPHIC_DATA } from '../../constants';
+import { ENDPOINTS } from "../../constants";
 
-import Header from '../../components/Header/Header';
-import SensorContainer from '../../components/SensorContainer/SensorContainer';
+import Error from "../../components/Error/Error";
+import Header from "../../components/Header/Header";
+import DataContainer from "../../components/DataContainer/DataContainer";
 
-import './style.css'
-import Statistics from '../../components/Statistics/Statistics';
+import "./style.css";
 
 const Dashboard = () => {
-  const { listaSensores } = MOCKED_DATA;
-  const [currentVariable, setCurrentVariable] = useState("")
-  
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [estanques, setEstanques] = useState([]);
+  const [currentEstanque, setCurrentEstanque] = useState(0);
+
+  useEffect(() => {
+    const fetchEstanques = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(ENDPOINTS.ESTANQUES);
+        const estanques = await response.json();
+        setEstanques(estanques);
+        setCurrentEstanque(estanques[0].id);
+      } catch (err) {
+        setError("Algo salió mal con los estanques");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchEstanques();
+  }, []);
+
   return (
     <div className="Dashboard__container">
-      <Header />
-      <div className="Data__container">
-        {listaSensores.map(({ id, nombre, promedio, mensaje, color, listValores }) => (
-          <SensorContainer
-            key={`${nombre}-${id}`} {...{ currentVariable, setCurrentVariable, nombre, promedio, mensaje, color, listValores }} />      
-        ))}
-      </div>
-      <Statistics data={MOCKED_GRAPHIC_DATA[currentVariable]} { ...{ currentVariable }} />
+      {error ? (
+        <Error message={error} />
+      ) : (
+        <>
+          <Header {...{ estanques, loading, setCurrentEstanque }} />
+          {currentEstanque !== 0 && <DataContainer {...{ currentEstanque }} />}
+        </>
+      )}
     </div>
   );
-}
+};
 
-export default Dashboard
+export default Dashboard;

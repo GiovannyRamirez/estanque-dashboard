@@ -3,8 +3,31 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 }
 
 .Header__title {
   margin: 12px 0;
+}
+
+.Header__select__options {
+  align-items: center;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.Header__select {
+  height: 32px;
+  width: 190px;
+}
+
+@media screen and (max-width: 744px) {
+  .Header__select__options {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: space-between;
+  }
 }
