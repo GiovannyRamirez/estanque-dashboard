@@ -1,3 +1,5 @@
+export const PERIOD_TO_FETCH = 2 * 60 * 1000;
+
 export const MONTHS = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 
 export const CONF_VALUES= {

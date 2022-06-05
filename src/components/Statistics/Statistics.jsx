@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   Chart as ChartJS,
@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-import { ENDPOINTS } from "../../constants";
+import { ENDPOINTS, PERIOD_TO_FETCH } from "../../constants";
 import { convertDatasets, convertLabels } from "./utils";
 
 import Error from "../Error/Error";
@@ -44,30 +44,41 @@ const Statistics = ({ currentEstanque, currentVariable }) => {
   const [loading, setLoading] = useState(false);
   const [dataToGraphic, setDataToGraphic] = useState({});
 
+  const fetchData = useCallback(async () => {
+    setDataToGraphic({});
+    setLoading(true);
+    setError("");
+    try {
+      const response = await fetch(
+        `${ENDPOINTS.ESTADISTICAS}tipoSensor=${currentVariable}&idEstanque=${currentEstanque}`
+      );
+      const { labels, listValores } = await response.json();
+      const formattedLabel = convertLabels(labels);
+      const datasets = convertDatasets(listValores);
+      setDataToGraphic({
+        labels: formattedLabel,
+        datasets,
+      });
+    } catch (err) {
+      setError("Algo salió mal con las estadísticas");
+    } finally {
+      setLoading(false);
+    }
+  }, [currentVariable, currentEstanque]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      setDataToGraphic({});
-      setLoading(true);
-      setError("");
-      try {
-        const response = await fetch(
-          `${ENDPOINTS.ESTADISTICAS}tipoSensor=${currentVariable}&idEstanque=${currentEstanque}`
-        );
-        const { labels, listValores } = await response.json();
-        const formattedLabel = convertLabels(labels);
-        const datasets = convertDatasets(listValores);
-        setDataToGraphic({
-          labels: formattedLabel,
-          datasets,
-        });
-      } catch (err) {
-        setError("Algo salió mal con las estadísticas");
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchData();
-  }, [currentEstanque, currentVariable]);
+  }, [fetchData]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchData();
+    }, PERIOD_TO_FETCH);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
   return (
     <div className="Statistics__container">

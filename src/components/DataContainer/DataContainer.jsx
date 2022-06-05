@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 
-import { ENDPOINTS } from "../../constants";
+import { ENDPOINTS, PERIOD_TO_FETCH } from "../../constants";
 
 import SensorContainer from "../SensorContainer/SensorContainer";
 import Statistics from "../Statistics/Statistics";
@@ -20,25 +20,36 @@ const DataContainer = ({
   const [error, setError] = useState("");
   let hasData = [];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setListaSensores([]);
-      setLoading(true);
-      setError("");
-      try {
-        const response = await fetch(
-          `${ENDPOINTS.VALORES}idEstanque=${currentEstanque}`
-        );
-        const { listaSensores } = await response.json();
-        setListaSensores(listaSensores);
-      } catch (err) {
-        setError("Algo salió mal con los datos");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+  const fetchData = useCallback(async () => {
+    setListaSensores([]);
+    setLoading(true);
+    setError("");
+    try {
+      const response = await fetch(
+        `${ENDPOINTS.VALORES}idEstanque=${currentEstanque}`
+      );
+      const { listaSensores } = await response.json();
+      setListaSensores(listaSensores);
+    } catch (err) {
+      setError("Algo salió mal con los datos");
+    } finally {
+      setLoading(false);
+    }
   }, [currentEstanque]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchData();
+    }, PERIOD_TO_FETCH);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
   return (
     <>
