@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-import { ENDPOINTS, PERIOD_TO_FETCH } from "../../constants";
+import { ENDPOINTS, PERIOD_TO_FETCH_STATISTICS } from "../../constants";
 import { convertDatasets, convertLabels } from "./utils";
 
 import Error from "../Error/Error";
@@ -73,7 +73,7 @@ const Statistics = ({ currentEstanque, currentVariable }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData();
-    }, PERIOD_TO_FETCH);
+    }, PERIOD_TO_FETCH_STATISTICS);
 
     return () => {
       clearInterval(interval);
