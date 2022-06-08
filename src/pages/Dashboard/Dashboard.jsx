@@ -39,7 +39,13 @@ const Dashboard = () => {
       ) : (
         <>
           <Header
-            {...{ estanques, loading, setCurrentEstanque, setCurrentVariable }}
+            {...{
+              estanques,
+              loading,
+              setCurrentEstanque,
+              setCurrentVariable,
+              currentVariable,
+            }}
           />
           {currentEstanque !== 0 && (
             <DataContainer

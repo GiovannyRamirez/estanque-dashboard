@@ -42,10 +42,16 @@ const options = {
 const Statistics = ({ currentEstanque, currentVariable }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [dataToGraphic, setDataToGraphic] = useState({});
+  const [dataToGraphic, setDataToGraphic] = useState({
+    labels: [],
+    datasets: [],
+  });
 
   const fetchData = useCallback(async () => {
-    setDataToGraphic({});
+    setDataToGraphic({
+      labels: [],
+      datasets: [],
+    });
     setLoading(true);
     setError("");
     try {

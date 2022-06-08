@@ -10,10 +10,11 @@ const Header = ({
   loading,
   setCurrentEstanque,
   setCurrentVariable,
+  currentVariable,
 }) => {
   const handleChange = (e) => {
     setCurrentEstanque(e.target.value);
-    setCurrentVariable(0);
+    setCurrentVariable(currentVariable);
   };
 
   return (
@@ -42,6 +43,8 @@ const Header = ({
 
 Header.propTypes = {
   loading: PropTypes.bool.isRequired,
+  currentVariable: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
   setCurrentVariable: PropTypes.func.isRequired,
   setCurrentEstanque: PropTypes.func.isRequired,
   estanques: PropTypes.arrayOf(

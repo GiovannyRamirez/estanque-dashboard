@@ -18,7 +18,6 @@ const DataContainer = ({
   const [listaSensores, setListaSensores] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  let hasData = [];
 
   const fetchData = useCallback(async () => {
     setListaSensores([]);
@@ -60,7 +59,6 @@ const DataContainer = ({
           listaSensores.map(
             ({ id, nombre, promedio, mensaje, color, listValores }) => {
               if (listValores.length === 0) {
-                hasData.push(false);
                 return null;
               }
               return (
@@ -81,9 +79,7 @@ const DataContainer = ({
             }
           )}
       </div>
-      {!hasData.length && (
-        <Statistics {...{ currentVariable, currentEstanque }} />
-      )}
+      <Statistics {...{ currentVariable, currentEstanque }} />
     </>
   );
 };
